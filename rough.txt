@@ -1,7 +1,0 @@
-class Food:
-    def __init__(self):
-        self.coord = Vector2( 5 * CELL_NUM, 7 * CELL_NUM)
-
-    def draw(self):
-        food_shape = pygame.Rect(self.coord.x, self.coord.y, CELL_SIZE, CELL_SIZE)
-        pygame.draw.rect(screen, DARK_BLUE, food_shape)
