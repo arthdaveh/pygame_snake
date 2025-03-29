@@ -23,8 +23,10 @@ class Snake:
     def __init__(self):
         self.body = [Vector2(11,13), Vector2(10,13), Vector2(9,13)]
         self.direction = Vector2(1, 0)
+        self.next_direction = self.direction  # prevents conflicting key presses
 
     def move(self):
+        self.direction = self.next_direction  # prevents conflicting key presses
         self.body = self.body[:-1]
         self.body.insert(0, self.body[0] + self.direction)
 
@@ -119,13 +121,13 @@ while running:
                 main.score = 0
                 main.state = True
             if (event.key == pygame.K_UP or event.key == pygame.K_w) and main.snake.direction != Vector2(0, 1):
-                main.snake.direction = Vector2(0, -1) #direction updates once per move cycle
+                main.snake.next_direction = Vector2(0, -1) #direction updates once per move cycle
             if (event.key == pygame.K_DOWN or event.key == pygame.K_s) and main.snake.direction != Vector2(0, -1):
-                main.snake.direction = Vector2(0, 1)
+                main.snake.next_direction = Vector2(0, 1)
             if (event.key == pygame.K_RIGHT or event.key == pygame.K_d) and main.snake.direction != Vector2(-1, 0):
-                main.snake.direction = Vector2(1, 0)
+                main.snake.next_direction = Vector2(1, 0)
             if (event.key == pygame.K_LEFT or event.key == pygame.K_a) and main.snake.direction != Vector2(1, 0):
-                main.snake.direction = Vector2(-1, 0)
+                main.snake.next_direction = Vector2(-1, 0)
 
     screen.fill(LIGHT_BLUE)
 
